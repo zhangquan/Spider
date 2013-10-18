@@ -1,0 +1,291 @@
+<script src="/editor/js/alignEl.js"></script>
+
+<p-element name="align">
+<template>
+
+
+    <div class="toolbar">
+
+
+        <div class="item-group" style="float: right">
+            <div class="item">
+                <div class="btn-toolbar">
+
+                    <div class="btn-group align">
+
+                        <button type="button" class="align-left btn btn-default btn-small" title="水平居左对齐"><i
+                                class="icon-align-left"></i></button>
+                        <button type="button" class="align-center btn btn-default btn-small" title="水平居中对齐"><i
+                                class="icon-align-center"></i></button>
+                        <button type="button" class="align-right btn btn-default btn-small" title="水平居右对齐"><i
+                                class="icon-align-right"></i></button>
+
+
+                    </div>
+                    <div class="btn-group  justify">
+                        <button type="button" class="width-auto btn btn-default btn-small"><i class="icon-resize-horizontal"></i>
+                        </button>
+                        <button type="button" class="height-auto btn btn-default btn-small"><i class="icon-resize-vertical"></i>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+</template>
+
+
+<script>
+
+var getValue = function (el) {
+    el = $(el);
+    if (el.prop("value")) {
+        var value = el.prop("value")
+
+
+    }
+    else {
+        var value = el.text();
+    }
+
+
+    if (el.next(".unit").length) {
+        value = value + el.next(".unit").text();
+    }
+
+    return value
+};
+
+
+var border = function () {
+    var dirs = getValue('[data-css="border-dir"]');
+    var width = getValue("[data-css='border-size']") + "px"
+    var color = getValue("[data-css='border-color']")
+    var style = getValue("[data-css='border-style']");
+
+    if (dirs == "null")return "";
+    if (dirs == "all")var borderWidth = width;
+    if (dirs == "left")var borderWidth = 0 + " " + 0 + " " + 0 + " " + width;
+    if (dirs == "right")var borderWidth = 0 + " " + width + " " + 0 + " " + 0;
+    if (dirs == "top")var borderWidth = width + " " + 0 + " " + 0 + " " + 0;
+    if (dirs == "bottom")var borderWidth = 0 + " " + 0 + " " + width + " " + 0;
+
+
+    return {
+        borderStyle: style,
+        borderColor: color,
+        borderWidth: borderWidth
+
+    }
+};
+
+
+var getAlign = function (el) {
+    el = $(el);
+
+    if (!el.attr("data-align-x")) {
+        return "left"
+    }
+    else {
+        return   el.attr("data-align-x");
+    }
+};
+
+var canAlignCenter = function (el) {
+    return !el.parent(".grid-row").length;
+
+};
+
+var synAlign = function (el) {
+    var align = getAlign(el);
+
+    var alignEl = $(".align button");
+    alignEl.removeClass("btn-primary");
+    $(".align-" + align).addClass("btn-primary");
+    if (!canAlignCenter(el)) {
+
+        $(".align-center").attr("disabled", "disabled");
+    }
+
+
+    if (el.attr("data-height-auto")) {
+        $(".height-auto").addClass("btn-primary");
+    }
+    else {
+        $(".height-auto").removeClass("btn-primary");
+    }
+    if (el.attr("data-width-auto")) {
+        $(".width-auto").addClass("btn-primary");
+    }
+    else {
+        $(".width-auto").removeClass("btn-primary");
+    }
+
+};
+
+({
+    readyCallback: function () {
+
+
+        $(document).on("selectEl", function (ev, el) {
+
+            synAlign(el);
+
+
+        })
+
+
+        var pages = $("#pages");
+
+        var sections = $("#sections");
+
+        var popover = $('[data-toggle="popover"]', this);
+
+
+        popover.each(function (index, el) {
+            $(el).popover({
+                html: true,
+                title: "边框",
+                placement: "bottom",
+                content: $(el).next().html()
+
+            })
+
+        })
+
+
+        pages.on("change", function (ev) {
+
+            var iframe = $("iframe");
+            iframe.attr("src", pages.val())
+
+        })
+
+        sections.on("change", function (ev) {
+
+            var iframe = $("iframe");
+            iframe.attr("src", sections.val())
+        })
+
+
+        var removeSelected = function () {
+
+            var alignEl = $(".align button");
+            alignEl.removeClass("btn-primary");
+
+        }
+
+        var selectAlign = function (type) {
+            removeSelected();
+            $(".align-" + type).addClass("btn-primary");
+        }
+
+
+        $(document).on("click", ".align-center", function () {
+            if (play.select.selectedEL) {
+                play.alignEl.center(play.select.selectedEL);
+
+                play.select.selectedEL.attr("data-align-x", "center");
+
+
+                selectAlign("center")
+
+                play.select.reflow();
+            }
+        })
+
+
+        /**
+         * 元素水平居左对齐
+         */
+        $(document).on("click", ".align-left", function () {
+            if (play.select.selectedEL) {
+
+                play.alignEl.left(play.select.selectedEL)
+
+
+                //@todo 判断定位
+
+                play.select.selectedEL.attr("data-align-x", "left");
+                selectAlign("left")
+
+                //$(document).trigger("cssChange")
+
+                //select.selectEL(select.selectedEL);
+            }
+        })
+        /**
+         * 元素水平居右对齐
+         */
+        $(document).on("click", ".align-right", function () {
+            if (play.select.selectedEL) {
+                play.alignEl.right(play.select.selectedEL)
+
+                play.select.selectedEL.attr("data-align-x", "right");
+
+                selectAlign("right")
+
+                // $(document).trigger("cssChange")
+
+                //select.selectEL(select.selectedEL);
+            }
+        })
+
+
+        /**
+         *
+         */
+        $(document).on("click", ".width-auto", function () {
+            if (play.select.selectedEL) {
+                play.select.selectedEL.attr("data-width-auto", true);
+                play.alignEl.widthAuto(play.select.selectedEL);
+                synAlign(play.select.selectedEL);
+            }
+        })
+
+        $(document).on("click", ".height-auto", function () {
+            if (play.select.selectedEL) {
+
+                play.select.selectedEL.attr("data-height-auto", true);
+                play.alignEl.heightAuto(play.select.selectedEL);
+                synAlign(play.select.selectedEL);
+
+            }
+        })
+
+        /**
+         * 观察事件变化
+         *
+         *
+         */
+
+            //高度自动
+
+        $(document).on("resizeEl addNewEl", function (ev, el) {
+
+            var hAuto = $('[data-height-auto]', el);
+            hAuto.each(function (index, el) {
+
+                play.alignEl.heightAuto($(el));
+            })
+
+
+        })
+
+
+    }
+
+
+
+
+});
+
+
+</script>
+
+
+</p-element>

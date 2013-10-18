@@ -1,0 +1,12 @@
+{
+  "name": "FilteredPaste.js",
+  "homepage": "https://github.com/git@github.com:willemmulder/FilteredPaste.js",
+  "_release": "c23fb1cb0d",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "c23fb1cb0d9db940ae660e91880707149c821ccc"
+  },
+  "_source": "git@github.com:willemmulder/FilteredPaste.js.git",
+  "_target": "*"
+}

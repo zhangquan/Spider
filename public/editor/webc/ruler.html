@@ -1,0 +1,712 @@
+<p-element name="panel-css">
+<template>
+<style>
+    panel-css {
+        padding: 5px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+
+    }
+
+    a.focus {
+        outline: none !important;
+    }
+
+    .accordion .content {
+        padding: 10px 0;
+    }
+
+    .group {
+
+        padding: 5px 10px;
+        overflow: hidden;
+
+        line-height: 25px;
+
+    }
+
+    .group .form-control {
+        padding: 5px 5px !important;
+    }
+
+    .content .divider {
+        border-top: solid 1px #ccc;
+        margin: 2px 0px;
+        height: 1px;
+
+    }
+
+    .group .inline {
+        width: 50px;
+        padding: 0 5px;
+    }
+
+    .group .text {
+
+        width: 30%;
+    }
+
+    .group .c-1 {
+        width: 70%;
+    }
+
+    .group .c-3 {
+        width: 23%;
+        padding: 5px;
+    }
+
+    .group .slide-c {
+
+        width: 40%;
+        margin-top: 3px;
+    }
+
+    .group .inline {
+        float: left;
+
+        overflow: visible;
+    }
+
+    .group .content {
+        padding: 0;
+    }
+
+    .group .input {
+        float: left;
+        width: 20%;
+    }
+
+    .group input[type="text"] {
+
+        width: 100%;
+    }
+
+    .group .text-input {
+        text-align: center;
+
+    }
+
+    .group .text-input span {
+
+    }
+
+    .group .c-2 {
+        width: 63px !important;
+    }
+
+    .minicolors {
+        height: 20px;
+        width: 30px;
+        background-color: #7745ff;
+        border: solid 1px #000000;
+    }
+
+    .border-left, .border-top, .border-right, .border-bottom {
+        display: inline-block;
+        height: 16px;
+        width: 20px;
+        background-color: #ccc;
+        margin-right: 10px;
+
+    }
+
+    .border-left {
+        border-left: solid 5px #000;
+    }
+
+    .border-top {
+        border-top: solid 5px #000;
+    }
+
+    .border-right {
+        border-right: solid 5px #000;
+    }
+
+    .border-bottom {
+        border-bottom: solid 5px #000;
+    }
+
+    .list-group-item > .badge {
+        margin: 0;
+    }
+
+
+</style>
+
+<div id="carousel-example-generic" class="carousel slide">
+
+
+<!-- Wrapper for slides -->
+<div class="carousel-inner">
+<div class="item active">
+<div class="accordion">
+<div class="a-group font-set" style="display: none">
+    <h3>字体</h3>
+
+    <div class="content">
+
+        <div class="group font">
+
+
+            <div class="text inline"><span>字体</span></div>
+
+
+            <div class='inline c-1'><select class="form-control" data-cssname="fontFamily">
+                <option value="arial">Arial</option>
+                <option value="'arial black'">Arial Black</option>
+                <option value="'comic sans ms'">Comic Sans MS</option>
+                <option value="'courier new'">Courier New</option>
+                <option value="georgia">Georgia</option>
+                <option value="helvetica">Helvetica</option>
+                <option value="impact">Impact</option>
+                <option value="'times new roman'">Times New Roman</option>
+                <option value="'trebuchet ms'">Trebuchet MS</option>
+                <option value="verdana">Verdana</option>
+
+            </select></div>
+
+        </div>
+        <div class="group font">
+
+
+            <div class="text inline"><span>&nbsp;</span></div>
+
+
+            <div class="text-input inline c-3"><input data-cssunit="px" class="form-control" data-cssname="fontSize"
+                                                      type="text"/><span>大小</span>
+            </div>
+            <div class="text-input inline c-3"><input data-cssunit="px" class="form-control"
+                                                      data-cssname="letterSpacing"
+                                                      type="text"/><span>间距</span></div>
+            <div class="text-input inline c-3"><input data-cssunit="px" class="form-control" data-cssname="lineHeight"
+                                                      type="text"/><span>行高</span></div>
+
+
+        </div>
+        <div class="group font">
+
+
+            <div class="text inline"><span>对齐</span></div>
+
+
+            <div class="inline c-1">
+                <div class="btn-group">
+                    <button type="button" value="left" data-cssname="textAlign" class="btn btn-small">LF
+                    </button>
+                    <button type="button" value="center" data-cssname="textAlign" class="btn btn-small">CT
+                    </button>
+                    <button type="button" value="right" data-cssname="textAlign" class="btn btn-small">RT
+                    </button>
+                </div>
+            </div>
+
+        </div>
+        <div class="group font">
+
+
+            <div class="text inline"><span>颜色</span></div>
+
+
+            <div class="inline c-3">
+                <div class="minicolors" data-cssname="color"></div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+<div class="a-group">
+    <h3>布局</h3>
+
+    <div class="content">
+
+        <div class="group border-radius">
+
+
+            <div class="text inline"><span>圆角</span></div>
+
+            <div class="inline slide-c">
+                <div class="slider" data-cssname="borderRadius" data-value="0" data-step="1"
+                     data-min="0"
+                     data-max="40"></div>
+
+            </div>
+            <div class='input inline'><input data-cssname="borderRadius" value=0 type="text"/></div>
+
+        </div>
+        <div class="divider"></div>
+        <div class="group opcity ">
+
+
+            <div class="text inline"><span>透明度</span></div>
+
+            <div class="inline slide-c">
+                <div class="slider" data-cssname="opacity" data-value="1" data-step="0.1" data-min="0"
+                     data-max="1"></div>
+
+            </div>
+            <div class='input inline'><input data-cssname="opacity" type="text"/></div>
+
+        </div>
+        <div class="divider"></div>
+        <div class="group position ">
+
+
+            <div class="text inline"><span>位置</span></div>
+
+
+            <div class='text-input inline c-2'><input data-cssunit="px" data-cssname="marginLeft" type="text"/><span>left</span>
+            </div>
+            <div class='text-input inline c-2'><input data-cssunit="px" data-cssname="marginTop"
+                                                      type="text"/><span>top</span></div>
+
+        </div>
+        <div class="group size">
+
+
+            <div class="text inline"><span>大小</span></div>
+
+
+            <div class='text-input inline c-2'><input type="text" data-cssunit="px"
+                                                      data-cssname="width"/><span>宽度</span>
+            </div>
+            <div class='text-input inline c-2'><input type="text" data-cssunit="px"
+                                                      data-cssname="height"/><span>高度</span>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+<div class="a-group">
+    <h3>背景</h3>
+
+    <div class="content">
+        <div class="item bgcolor">
+
+            <div>
+                <a data-cssname="backgroundColor" class="btn btn-small minicolors" value="#7745ff"></a>
+                <a data-cssname="backgroundImage" class="btn btn-small">背景图</a>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+<div class="a-group">
+    <h3>边框</h3>
+
+    <div class="content">
+        <div class="group border-dir">
+
+            <div class="border-left"></div>
+            <div class="border-top"></div>
+            <div class="border-right"></div>
+            <div class="border-bottom"></div>
+
+
+        </div>
+        <div class="group border">
+
+
+            <div class="text inline">
+                <select data-cssname="borderStyle">
+                    <option value="solid" checked>solid</option>
+                    <option value="dotted">dotted</option>
+                    <option value="double">double</option>
+                    <option value="groove">groove</option>
+                    <option value="ridge">ridge</option>
+                    <option value="inset">inset</option>
+                    <option value="outset">outset</option>
+                </select></div>
+
+
+            <div class='inline c-2'><input type="text" value="0" data-cssname="borderWidth"/>
+            </div>
+            <div class='inline c-2'>
+                <div class="minicolors" data-cssname="borderColor"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="a-group">
+    <h3>动作</h3>
+
+    <div class="content">
+        <ul class="list-group actions" style="margin: 10px">
+            <li class="list-group-item eventtype" data-eventtype="click">点击<span class="badge start">+</span> <span
+                    class="badge end">-</span></li>
+            <li class="list-group-item" data-eventtype="hover">悬停<span class="badge">+</span></li>
+
+        </ul>
+    </div>
+</div>
+
+</div>
+
+</div>
+<div class="item colorpick">
+    <div class="accordion">
+        <div class="a-group">
+            <div class="content">
+                <input id="picker" type="text" value=123/>
+
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+</template>
+
+
+<script>
+
+function actions() {
+    $(".actions .start").click(function (el) {
+        var target = $(el.target);
+        var type = target.parent().attr("data-eventtype");
+        play.action.start(type);
+
+
+    })
+    $(".actions .end").click(function (el) {
+
+        play.action.end();
+
+
+    })
+
+
+}
+
+
+({
+    readyCallback: function () {
+        actions();
+
+        var targetColorInput;
+
+
+        var border = function () {
+            var dirs = getValue('[data-css="border-dir"]');
+            var width = getValue("[data-css='border-size']") + "px"
+            var color = getValue("[data-css='border-color']")
+            var style = getValue("[data-css='border-style']");
+
+            if (dirs == "null")return "";
+            if (dirs == "all")var borderWidth = width;
+            if (dirs == "left")var borderWidth = 0 + " " + 0 + " " + 0 + " " + width;
+            if (dirs == "right")var borderWidth = 0 + " " + width + " " + 0 + " " + 0;
+            if (dirs == "top")var borderWidth = width + " " + 0 + " " + 0 + " " + 0;
+            if (dirs == "bottom")var borderWidth = 0 + " " + 0 + " " + width + " " + 0;
+
+
+            return {
+                borderStyle: style,
+                borderColor: color,
+                borderWidth: borderWidth
+
+            }
+        };
+
+
+        var changeStep = play.utils.createStepRun(1000);
+        $(".slider").each(function (index, el) {
+            el = $(el);
+            var min = parseFloat(el.attr("data-min"));
+            var max = parseFloat(el.attr("data-max"));
+            var step = parseFloat(el.attr("data-step"));
+            var val = parseFloat(el.attr("data-value"));
+            var cssname = $(this).attr("data-cssname")
+            $(el).slider({
+                heightStyle: "content",
+                range: "min",
+                value: val,
+                step: step,
+                min: min,
+                max: max,
+
+
+                slide: function (event, ui) {
+
+                    var f = function () {
+                        $('[data-cssname="' + cssname + '"]').val(ui.value);
+
+                        var value = ui.value;
+                        var unit = $('[data-cssname="' + cssname + '"]').attr("data-cssunit");
+                        if (unit) {
+
+                            value += unit;
+                        }
+
+                        $(document).trigger("csschange", [cssname, value, unit]);
+
+                    }
+                    changeStep.run(f)
+
+                }
+            });
+            $('[data-cssname="' + cssname + '"]').val(val);
+
+        })
+
+
+        $(".accordion").accordion({
+
+            collapsible: true,
+            heightStyle: "content",
+            header: "> div > h3"
+        })
+
+        $(".colorpick").removeClass("active")
+
+
+        $("input", this).on("keyup", function (e) {
+            var target = $(e.target);
+            var cssname = target.attr("data-cssname");
+            var unit = target.attr("data-cssunit");
+            var value = target.val();
+            if (unit) {
+
+                value += unit;
+            }
+
+
+            $(document).trigger("csschange", [cssname, value, unit]);
+
+        })
+        $("select", this).on("change", function (e) {
+            var target = $(e.target);
+            var cssname = target.attr("data-cssname");
+            var unit = target.attr("data-cssunit");
+            var value = target.val();
+            if (unit) {
+
+                value += unit;
+            }
+
+
+            $(document).trigger("csschange", [cssname, value, unit]);
+
+        })
+        $("button", this).on("click", function (e) {
+            var target = $(e.target);
+            var cssname = target.attr("data-cssname");
+            var unit = target.attr("data-cssunit");
+            var value = target.attr("value");
+            if (unit) {
+
+                value += unit;
+            }
+
+            if (cssname) {
+
+                $(document).trigger("csschange", [cssname, value, unit]);
+            }
+
+
+        })
+
+        $(document).on("csschange", function (e, cssname, value) {
+
+                   console.log(cssname,value)
+            play.select.selectedEL && play.dom.css(play.select.selectedEL, cssname, value);
+
+        })
+
+        /*
+         color:
+         */
+
+
+        $("#picker").spectrum({
+            flat: true,
+            color: "rgb(68, 128, 38)",
+            showInput: true,
+            showAlpha: true,
+            showPalette: true,
+            // showInitial: true,
+            palette: [
+                ["rgb(0, 0, 0)", "rgb(67, 67, 67)", "rgb(102, 102, 102)", /*"rgb(153, 153, 153)","rgb(183, 183, 183)",*/
+                    "rgb(204, 204, 204)", "rgb(217, 217, 217)", /*"rgb(239, 239, 239)", "rgb(243, 243, 243)",*/ "rgb(255, 255, 255)"],
+                ["rgb(152, 0, 0)", "rgb(255, 0, 0)", "rgb(255, 153, 0)", "rgb(255, 255, 0)", "rgb(0, 255, 0)",
+                    "rgb(0, 255, 255)", "rgb(74, 134, 232)", "rgb(0, 0, 255)", "rgb(153, 0, 255)", "rgb(255, 0, 255)"],
+                ["rgb(230, 184, 175)", "rgb(244, 204, 204)", "rgb(252, 229, 205)", "rgb(255, 242, 204)", "rgb(217, 234, 211)",
+                    "rgb(208, 224, 227)", "rgb(201, 218, 248)", "rgb(207, 226, 243)", "rgb(217, 210, 233)", "rgb(234, 209, 220)",
+                    "rgb(221, 126, 107)", "rgb(234, 153, 153)", "rgb(249, 203, 156)", "rgb(255, 229, 153)", "rgb(182, 215, 168)",
+                    "rgb(162, 196, 201)", "rgb(164, 194, 244)", "rgb(159, 197, 232)", "rgb(180, 167, 214)", "rgb(213, 166, 189)",
+                    "rgb(204, 65, 37)", "rgb(224, 102, 102)", "rgb(246, 178, 107)", "rgb(255, 217, 102)", "rgb(147, 196, 125)",
+                    "rgb(118, 165, 175)", "rgb(109, 158, 235)", "rgb(111, 168, 220)", "rgb(142, 124, 195)", "rgb(194, 123, 160)",
+                    "rgb(166, 28, 0)", "rgb(204, 0, 0)", "rgb(230, 145, 56)", "rgb(241, 194, 50)", "rgb(106, 168, 79)",
+                    "rgb(69, 129, 142)", "rgb(60, 120, 216)", "rgb(61, 133, 198)", "rgb(103, 78, 167)", "rgb(166, 77, 121)",
+                    /*"rgb(133, 32, 12)", "rgb(153, 0, 0)", "rgb(180, 95, 6)", "rgb(191, 144, 0)", "rgb(56, 118, 29)",
+                     "rgb(19, 79, 92)", "rgb(17, 85, 204)", "rgb(11, 83, 148)", "rgb(53, 28, 117)", "rgb(116, 27, 71)",*/
+                    "rgb(91, 15, 0)", "rgb(102, 0, 0)", "rgb(120, 63, 4)", "rgb(127, 96, 0)", "rgb(39, 78, 19)",
+                    "rgb(12, 52, 61)", "rgb(28, 69, 135)", "rgb(7, 55, 99)", "rgb(32, 18, 77)", "rgb(76, 17, 48)"]
+            ],
+            move: function (color) {
+                var rgb = color.toRgb(); // #ff0000
+
+
+                var rgba = "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + "," + color.alpha + ")"
+
+                if (targetColorInput) {
+                    targetColorInput.css("backgroundColor", rgba);
+                    play.select.selectedEL && play.dom.css(play.select.selectedEL, targetColorInput.attr("data-cssname"), rgba)
+
+
+                }
+            }
+        });
+
+        setTimeout(function () {
+            $("#picker").spectrum("reflow");
+
+
+        }, 1000)
+
+
+        $('.carousel').carousel({
+            interval: false
+        })
+
+
+        this.next = function () {
+            $('.carousel').carousel("next")
+        }
+
+        this.prev = function () {
+            $('.carousel').carousel("prev")
+
+        }
+
+        $(document).on("select", function (ev, target) {
+            play.layout.open("east")
+
+
+            if (target.prop("tagName").toLowerCase() == "p-text") {
+                $(".font-set").show();
+                // $(".accordion").accordion({ active: 0 });
+
+            }
+            else {
+                $(".font-set").hide();
+                //$(".accordion").accordion({ active: 1 });
+            }
+
+
+            $('.carousel').carousel(0);
+            upgrade(target);
+
+
+        })
+
+        var host = this;
+        $(".go-next").click(function () {
+            host.next();
+        })
+
+        $(".minicolors").click(function (ev) {
+            host.next();
+            targetColorInput = $(ev.target);
+            $("#picker").spectrum("set", targetColorInput.css("backgroundColor"));
+        })
+
+
+        //图片上传
+        var ok = false;
+
+
+        $('[data-cssname="backgroundImage"]', this).on("click", function () {
+
+            play.selectImg.show();
+            play.selectImg.onSelect = function (src) {
+                if (!ok)return;
+                var el = play.select.selectedEL;
+                play.dom.css(el, "backgroundImage", "url('" + src + "')");
+                ok = false;
+
+            };
+
+            ok = true;
+
+
+            return;
+
+
+        })
+
+
+        /*
+         $(".accordion").accordion({
+         heightStyle: "content"
+         });
+
+         */
+        var cssNames = {
+            "borderRadius": {},
+            "opacity": {},
+            "width": {unit: "px"},
+            "height": {unit: "px"},
+            "marginTop": {unit: "px"},
+            "marginLeft": {unit: "px"},
+            "backgroundColor": {},
+            "borderWidth": {unit: "px"},
+            "borderStyle": {},
+            "borderColor": {},
+            "fontSize": {unit: "px"},
+            "fontFamily": {},
+            "color": {}
+        }
+
+        function upgrade(el) {
+
+            for (var p in cssNames) {
+                var value = el.css(p);
+                var cfg = cssNames[p];
+
+                if (cfg.unit == "px") {
+                    value = parseInt(value)
+                }
+
+
+                var target = $('[data-cssname="' + p + '"]')
+
+                if (target.prop("tagName").toLowerCase() == "input") {
+
+                    target.val(value);
+                } else {
+                    target.css(p, value)
+                }
+
+
+            }
+
+
+        }
+
+
+    }
+
+
+});
+
+
+</script>
+
+
+</p-element>

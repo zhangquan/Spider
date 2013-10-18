@@ -1,0 +1,46 @@
+<p-element name="p-logo" attributes="href src">
+    <template>
+        <style>
+            p-logo {
+
+                display: block;
+                width: 200px;
+                height: 100px;
+                overflow: hidden;
+                text-align: center;
+                vertical-align: middle;
+            }
+
+
+        </style>
+
+        <a class="p-href" selectable="false" style="display:inline-block" href="{{href}}"><img style="width:200px"
+                                                                                               class="p-imgsrc"
+                                                                                               src="{{src}}"/></a>
+    </template>
+    <script>
+
+        ({
+
+            readyCallback: function () {
+                this.href = "#";
+                $("img", this).prop("src", "http://localhost:3000/editor/img/logo.png");
+
+            },
+            editCallback: function () {
+
+                function command(ev) {
+
+                }
+
+
+                this.cmds = [
+                    {name: "img", desc: "图片", type: "btn", func: command},
+                    {name: "href", desc: "地址", type: "input", innerHTML: "", func: command}
+                ]
+
+
+            }
+        });
+    </script>
+</p-element>

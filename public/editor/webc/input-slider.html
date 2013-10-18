@@ -1,0 +1,59 @@
+<p-element name="input-slider">
+
+
+    <template>
+        <style>
+            input-slider{
+                display: inline-block;
+                width: 220px;
+                height: 24px;
+            }
+
+            input-slider .slider{
+                width: 70%;
+
+                float: left;
+                margin: 8px 2% 0 0 ;
+            }
+
+            input-slider input-number{
+                width: 20%;
+                float: left;
+
+            }
+        </style>
+
+        <div class="slider"></div>
+        <input-number ></input-number>
+
+
+    </template>
+
+    <script>
+
+
+        ({
+            readyCallback: function () {
+                var el = $(this);
+                var step = el.attr("step") || 1;
+                var max = el.attr("max");
+                var min = el.attr("min");
+
+
+                console.log($("input-number",this).get(0).offsetWidth)
+
+                $( ".slider",el).slider();
+
+
+
+
+            }
+
+
+        });
+
+
+    </script>
+
+
+</p-element>

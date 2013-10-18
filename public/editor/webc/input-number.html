@@ -1,0 +1,150 @@
+<p-element name="input-number">
+
+
+    <template>
+        <style>
+            input-number {
+                display: inline-block;
+                width: 133px;
+                height: 24px;
+                position: relative;
+                background-color: #fff;
+                border: 1px solid #cccccc;
+
+
+            }
+
+            input-number input {
+                border: 0;
+                background-color: transparent;
+
+                outline: none;
+                width: 100%;
+                height: 100%;
+                padding: 2px 14px 2px 2px;
+
+
+            }
+
+            input-number .ticks {
+                position: absolute;
+                top: 0;
+                right: 0;
+
+                border-left: 1px solid black;
+            }
+
+            input-number .ticks  .sep {
+
+                display: block;
+                height: 1px;
+
+            }
+
+            input-number .ticks  a {
+                display: block;
+                width: 10px;
+
+                background-color: #474747;
+                box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+                text-align: center;
+                height:50%;
+
+            }
+
+        </style>
+
+        <input type="text" value=0>
+
+
+        <div class="ticks">
+            <a href="#" class="tick up icon-caret-up"></a>
+
+            <a href="#" class="tick down icon-caret-down"></a>
+        </div>
+
+
+    </template>
+
+    <script>
+
+
+        ({
+            readyCallback: function () {
+
+                var self = this;
+
+
+                var input = $("input", this);
+                var tick = $("a", this);
+                var height = $(this).height();
+                var width = $(this).width();
+
+                var up = $(".up", this);
+                var down = $(".down", this);
+
+
+                var step = $(this).attr("step") || 1;
+                var max = $(this).attr("max");
+                var min = $(this).attr("min");
+
+
+                var tickHeight = (height - 1) / 2;
+
+                tick.css("lineHeight", tickHeight + 1 + "px")
+              //  tick.height(tickHeight);
+              // tick.width(tickHeight);
+
+                try {
+                    var val = parseInt($(this).val() || 0);
+
+
+                    input.val(val);
+                    this.value = val;
+                } catch (e) {
+
+                }
+
+
+               // input.height(height - 2);
+                console.log("width", width)
+              //  $(this).css("paddingRight", tickHeight + 4);
+
+
+                up.on("click", function () {
+
+
+                    try {
+                        val = parseInt(input.val()) + step
+                        input.val(val);
+                        self.value = val;
+                    } catch (e) {
+
+                    }
+
+                })
+                down.on("click", function () {
+
+
+                    try {
+                        val = parseInt(input.val()) - step
+                        input.val(val);
+                        self.value = val;
+
+                    } catch (e) {
+
+                    }
+
+                })
+
+
+            }
+
+
+        });
+
+
+    </script>
+
+
+</p-element>

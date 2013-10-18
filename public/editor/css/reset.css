@@ -1,0 +1,97 @@
+html{
+
+}
+body{
+
+}
+html  * {
+    margin: 0;
+    padding: 0;
+    /*防止margin叠加*/
+   /* padding: 1px;   */
+    /*改变盒模型*/
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    word-wrap: break-word;
+
+
+}
+.coll:before,.coll:after{
+    display: table;
+
+    content: "";
+
+    line-height: 0;
+}
+
+/*
+ 导致创建栅格时，位置有偏移
+ body {
+     width: 950px;
+     margin: 0 auto;
+
+ }
+ */
+
+
+body:before,
+body:after {
+    display: table;
+    line-height: 0;
+    content: "";
+}
+#header:before, #header:after,#body:before, #body:after,#footer:before, #footer:after{
+    display: table;
+    content: "";
+    line-height: 0;
+}
+
+.grid-row {
+
+    *zoom: 1;
+    overflow: hidden;
+}
+
+.grid-row:before,
+.grid-row:after {
+    display: table;
+    line-height: 0;
+    content: "";
+}
+
+.grid-row:after {
+    clear: both;
+}
+
+.gird-row{
+    overflow: hidden;
+}
+.grid-row > *{
+    float: left!important;
+}
+
+.grid-row > *[data-align-x="right"]{
+    float:right!important;
+}
+
+/*居中*/
+
+#header{
+    height: 100px;
+    width: 1000px;
+    margin: 0 auto;
+}
+#body{
+    height: 800px;
+    width: 1000px;
+    margin: 0 auto;
+}
+#footer{
+    height: 100px;
+    width: 1000px;
+    margin: 0 auto;
+    margin-bottom: 60px;
+
+}

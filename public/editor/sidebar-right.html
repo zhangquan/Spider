@@ -1,0 +1,157 @@
+
+<link rel="import" href="/editor/webc/css.html">
+<link rel="import" href="/editor/webc/align.html">
+<link rel="import" href="/editor/webc/navbar.html">
+<link rel="import" href="/editor/webc/colorpicker.html">
+<link rel="import" href="/editor/webc/input-number.html">
+<link rel="import" href="/editor/webc/input-slider.html">
+
+<p-element name="sidebar-right">
+    <template>
+        <style>
+                /*左侧*/
+            sidebar-right {
+
+                position: fixed;
+                width: 224px;
+                height: 100%;
+                right: 0px;
+                top: 0;
+
+                border-left: 1px solid #000;
+                padding: 0;
+                z-index: 29;
+                font-family: Arial;
+                font-size: 11px;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+                -webkit-transition: right .4s ease-in-out, opacity .4s linear, background .4s ease-in-out;
+                transition: right .4s ease-in-out, opacity .4s linear, background .4s ease-in-out;
+                background-image: none;
+                color: #b1b1b1;
+                background-color: #333;
+                color:#eee;
+            }
+            input, textarea{
+                outline: none;
+            }
+
+            .collapse-panel {
+
+            }
+
+            .collapse-header {
+                padding: 8px 10px;
+                height: 30px;
+                font-size: 12px;
+                font-weight: 400;
+                text-transform: uppercase;
+                border-top: 1px solid #3a3a3a;
+                border-bottom: 1px solid #1f1f1f;
+                background: #242424;
+                margin: 0;
+                font-weight: 700;
+                text-shadow: 0 -1px 0 #000;
+
+            }
+
+            .collapse-body {
+
+                background-color: #333;
+
+
+            }
+            .collapse-body-panel{
+                padding: 8px;
+
+            }
+
+            .css-panel {
+                height: 100%;
+            }
+
+            .tab-content {
+                height: 100%;
+                overflow: auto;
+
+            }
+
+
+        </style>
+
+        <div class="quickbar">
+
+        </div>
+        <div class="css-panel">
+
+
+            <ul class="nav nav-tabs" id="tabs">
+                <li><a href="#home" data-toggle="tab">添加</a></li>
+                <li><a href="#profile" class="style-set" data-toggle="tab">样式</a></li>
+
+                <li><a href="#settings" style="display: none" data-toggle="tab">设置</a></li>
+                <li><a href="#colorpicker" style="display: none" class="colorpicker" data-toggle="tab">color</a></li>
+            </ul>
+
+            <div class="tab-content">
+
+                <div class="tab-pane active" id="home">
+
+                    <navbar></navbar>
+
+                </div>
+
+                <div class="tab-pane" id="profile">
+                    <panel-css></panel-css>
+                </div>
+                <div class="tab-pane" id="messages">
+
+
+                </div>
+                <div class="tab-pane" id="color">
+
+
+                </div>
+                <div class="tab-pane" id="settings">
+                    <input-slider></input-slider>
+
+                    <input-number></input-number>
+
+                </div>
+                <div  class="tab-pane"  id="colorpicker">
+                     <colorpicker></colorpicker>
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </template>
+
+
+    <script>
+
+
+        ({
+            readyCallback: function () {
+
+
+                console.log("sidebar-right is ok")
+
+
+            }
+
+
+        })
+
+
+    </script>
+
+
+</p-element>

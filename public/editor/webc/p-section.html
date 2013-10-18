@@ -1,0 +1,40 @@
+<p-element name="p-section">
+    <template>
+        <style>
+            p-section {
+
+                display: block;
+                width: 200px;
+                height: 100px;
+            }
+
+
+        </style>
+
+
+        <content></content>
+
+    </template>
+
+
+    {
+    editable:true
+    editCallback:function(){
+
+
+    },
+    addDataCallback:function(){
+    var children = $(this).children();
+    children.prop("selectable",false);
+
+    var dataEls = $("p-text,p-pic", this);
+    dataEls.prop("moveable",false);
+
+
+    }
+
+
+    };
+
+
+</p-element>

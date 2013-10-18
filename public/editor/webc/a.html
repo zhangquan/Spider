@@ -1,0 +1,88 @@
+<p-element name="a">
+    <template>
+        <content></content>
+
+
+    </template>
+    <script>
+        ({
+            readyCallback: function () {
+               if($.trim($(this).html())=="") $(this).html("输入文本");
+
+                $(this).on("mouseover", function (e) {
+                    console.log("mouseover")
+                    if ($(this).html() == "输入文本") {
+                        $(this).html("输入文本")
+                    }
+                    var target = $(e.target)
+                    console.log(target)
+                    target.css("-webkit-user-select", "all");
+                    target.attr("contenteditable", "true");
+                })
+
+                $(this).on("blur", function (e) {
+                    var target = $(e.target)
+                    target.css("-webkit-user-select", "");
+                    target.removeAttr("contenteditable");
+                    if ($(this).html() == "") {
+                        $(this).html("输入文本")
+                    }
+                })
+
+
+            },
+
+
+            editCallback: function(){
+
+
+
+                function command(ev) {
+                    var target = $(ev.target);
+                    var selectEl = play.select.selectedEL;
+                    console.log(selectEl.get(0))
+                    var doc = selectEl.get(0).ownerDocument;
+
+                    var cmd = $(target).attr("data-name");
+
+
+
+                    var bool = false;
+
+
+
+                    doc.execCommand(cmd,bool);
+                }
+
+
+
+                play.shortcutbar.add( {
+                    type: "p-text",
+                    desc: "文本",
+                    cmds: [
+                        {name: "bold", desc: "加粗", func: command},
+                        {name: "italic", desc: "斜体", func: command},
+                        {name: "backColor", desc: "背景色", func: command},
+                        {name: "fontSize", desc: "大小", func: command},
+                        {name: "underline", desc: "下划线", func: command},
+                        {name: "justifyLeft", desc: "左对齐", func: command},
+                        {name: "justifyRight", desc: "右对齐", func: command},
+                        {name: "justifyCenter", desc: "中对齐", func: command},
+                        {name: "justifyFull", desc: "平铺", func: command}
+                    ]
+
+                })
+
+                play.shortcutbar.showType("p-text")
+
+
+
+
+
+
+            }
+        });
+
+
+    </script>
+</p-element>

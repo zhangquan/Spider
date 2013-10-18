@@ -1,0 +1,464 @@
+<script src="/bower_components/jquery-file-upload/js/jquery.iframe-transport.js"></script>
+<!-- The basic File Upload plugin -->
+<script src="/bower_components/jquery-file-upload/js/jquery.fileupload.js"></script>
+
+<script src="/bower_components/jquery.hotkeys/jquery.hotkeys.js"></script>
+
+<script src="/editor/js/utils.js"></script>
+<script src="/editor/js/position.js"></script>
+<script src="/editor/js/grid.js"></script>
+<script src="/editor/js/align.js"></script>
+<script src="/editor/js/select-mask.js"></script>
+<script src="/editor/js/select.js"></script>
+<script src="/editor/js/history.js"></script>
+<script src="/editor/js/dom.js"></script>
+
+
+<script src="/editor/js/drag.js"></script>
+<script src="/editor/js/draw.js"></script>
+<script src="/editor/js/draw-select.js"></script>
+<script src="/editor/js/preventDefault.js"></script>
+<script src="/editor/js/resize.js"></script>
+<script src="/editor/js/move.js"></script>
+<script src="/editor/js/remove.js"></script>
+<script src="/editor/js/copy.js"></script>
+<script src="/editor/js/save.js"></script>
+<script src="/editor/js/selectImg.js"></script>
+<script src="/editor/js/select-webc.js"></script>
+<script src="/editor/js/layout.js"></script>
+
+
+<p-element name="sidebar-center">
+    <template>
+        <style>
+                /*左侧*/
+            sidebar-center {
+                /*body*/
+
+                background-color: #FFF;
+
+                overflow-x: hidden;
+                border-top: 0;
+                margin: 0 224px 0 0px;
+                position: relative;
+                height: 100%;
+                display: block;
+                background: #999;
+                overflow: hidden;
+                background: url("/editor/img/bg-linen.jpg") repeat 0 0;
+            }
+
+            #editor-wrap {
+                height: 100%;
+
+            }
+
+            #editor-scroll {
+                overflow: auto;
+                position: relative;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            #editor-margin {
+
+                position: relative;
+
+                width: 1000px;
+
+               margin: auto;
+                padding:0px 20px
+
+            }
+
+            #editor {
+
+                overflow: visible;
+
+                position: relative;
+                width: 100%;
+
+            }
+
+            #editor-iframe {
+                width: 100%;
+                height: 1000px;
+
+            }
+
+            #tools {
+                position: absolute;
+                top: 0;
+                height: 0;
+                left: 0;
+                width: 0;
+                overflow: hidden;
+            }
+
+
+            /*页面大小控制*/
+        .fline, .hline, .bline {
+            height: 5px;
+            border-top: dashed 1px #ccc;
+            overflow: visible;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+            text-align: center;
+        }
+
+
+
+        .fline span, .hline span, .bline span {
+            margin: 0px auto 0 auto;
+            position: absolute;
+            top: -4px;
+            left: 50%;
+            background-color: #999;
+            cursor: default;
+            color: #fff;
+            visibility: hidden;
+
+        }
+
+        .fline:hover span.selected, .hline:hover span.selected, .bline:hover span.selected {
+            margin: 0px auto 0 auto;
+            position: absolute;
+            top: -4px;
+            left: 50%;
+            background-color: green;
+            cursor: default;
+            color: #fff;
+            visibility: hidden;
+
+        }
+
+        .fline.hover span, .hline.hover span, .bline.hover span {
+
+            visibility: hidden !important;
+
+        }
+
+        .fline:hover span, .hline:hover span, .bline:hover span {
+            margin: 0px auto 0 auto;
+            position: absolute;
+            top: -4px;
+            left: 50%;
+            background-color: #999;
+            cursor: default;
+            color: #fff;
+            visibility: hidden;
+
+        }
+
+        .fline:hover, .hline:hover, .bline:hover {
+
+            cursor: ns-resize;
+        }
+
+        .fline.hover, .hline.hover, .bline.hover {
+
+            cursor: ns-resize;
+        }
+
+        .hline {
+            top: 100px;
+        }
+
+        .bline {
+            top: 900px;
+        }
+
+        .fline {
+            top: 1000px
+        }
+
+        .lline, .rline {
+            height: 100%;
+
+            overflow: visible;
+            position: absolute;
+            width: 4px;
+            top: 0;
+            z-index: 100000;
+            /* visibility: hidden; */
+
+        }
+
+        .lline {
+            left: -1px;
+
+        }
+
+        .rline {
+            right: -1px;
+
+        }
+
+        .lline:hover {
+
+            cursor: ew-resize;
+        }
+
+        .rline:hover {
+
+            visibility: visible;
+            cursor: ew-resize;
+
+        }
+
+        .lline.hover {
+            border-width: 5px;
+            left: -5px
+        }
+
+        .rline.hover {
+            border-width: 5px;
+            right: -5px;
+            visibility: visible;
+
+        }
+
+
+
+            /*rules*/
+
+        #editor-rulers-x {
+
+            height: 20px;
+
+            overflow: hidden;
+            position: absolute;
+
+            width: 100%;
+
+            top: 0;
+            left: 0;
+            z-index: 20;
+
+            opacity: 0.5;
+            visibility: hidden;
+
+        }
+
+        #editor-rulers-x .scroll {
+            background-image: url("../img/EditorRulerBG-H.png");
+            background-position: 30px -4px;
+            background-repeat: repeat no-repeat;
+        }
+
+        #editor-rulers-x .bd {
+
+            height: 20px;
+
+            overflow: hidden;
+
+            position: relative;
+
+        }
+
+        #editor-rulers-x  .right {
+            position: absolute;
+            top: 0;
+            right: 0;
+            border-left: dashed 1px red;
+            width: 4px;
+            height: 20px;
+            z-index: 10;
+        }
+
+        #editor-rulers-y {
+
+            width: 20px;
+
+            position: absolute;
+            opacity: 0.5;
+
+            top: 00px;
+
+            z-index: 10;
+            height: 100%;
+            overflow: hidden;
+            display: none;
+
+        }
+
+        #editor-rulers-y .scroll {
+            background-image: url("../img/EditorRulerBG-V.png");
+            width: 20px;
+            background-position: -24px 30px;
+            background-repeat: no-repeat repeat;
+            padding: 30px 0 100px 0;
+            position: relative;
+        }
+
+        #editor-rulers-y .header {
+            display: block;
+            border-top: dashed 1px red;
+            height: 0px;
+            width: 20px;
+            position: absolute;
+            top: 130px;
+            left: 0px;
+
+            background-color: #fff;
+            z-index: 10;
+        }
+
+        #editor-rulers-y .body {
+            display: block;
+            border-top: dashed 1px red;
+            height: 0px;
+            width: 20px;
+            position: absolute;
+            top: 930px;
+            left: 0px;
+
+            background-color: #fff;
+            z-index: 10;
+        }
+
+        #editor-rulers-y .footer {
+            display: block;
+            border: solid 1px red;
+            height: 0px;
+            width: 20px;
+            position: absolute;
+            top: 1030px;
+            left: 0px;
+
+            background-color: #fff;
+            z-index: 10;
+        }
+
+        #editor-rulers-y .bd {
+
+            width: 20px;
+
+            overflow: hidden;
+
+            position: relative;
+
+        }
+
+
+
+
+        </style>
+        <div id="editor-wrap">
+
+
+            <div id="editor-scroll">
+                <div id="editor-margin">
+                    <div id="editor">
+                        <div id="tools">
+                            <input id="img-upload" type="file" name="files[]" data-url="/upload" multiple>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </template>
+
+
+    <script>
+
+
+        ({
+            readyCallback: function () {
+
+
+                console.log("sidebar-center is ok")
+
+                $("#editor-wrap").disableSelection() ;
+
+
+                $(document).ready(function () {
+
+
+                    //todo 宽度百分比计算
+
+
+                    $("#editor").on("mousedown", function (e) {
+
+                        var target = $(e.target);
+
+                        var tagName = target.prop("tagName").toLowerCase();
+
+                        if (tagName == "input" || tagName == "textarea" || target.closest(".minicolors").length) {
+
+                        }
+                        else {
+                            e.preventDefault();
+                            return false;
+                        }
+
+
+                    })
+
+
+                    var iframe = $('<iframe id="editor-iframe" allowtransparency=true  frameborder="0" scrolling="no" style="border:0" seamless="true" src="editor/source.html"></iframe>');
+
+
+                    play.iframe = iframe;
+
+
+                    play.iframeOnload(function () {
+
+                        console.log("iframe on load")
+
+                        play.iframeDoc = iframe.get(0).contentDocument;
+
+
+                        play.iframeWin = iframe.get(0).contentWindow;
+                        play.iframeWin.play = play;
+                        $(document).click(function (e) {
+                            var target = $(e.target);
+                            if (target.attr("data-cmd")) {
+                                play.cmd = target.attr("data-cmd");
+                                target.trigger("cmd", play.cmd);
+                            }
+
+                        })
+
+
+                       $("#editor-wrap").on("click", function(){
+                           $(play.iframeDoc).trigger("click")
+                       })
+
+                        $(document).trigger("iframeload", iframe)
+
+
+
+                    })
+
+
+                    play.iframe.attr("src", $(".page .name").eq(0).attr("data-url"));
+
+
+                    $(play.container).append(play.iframe);
+
+
+                });
+
+
+            }
+
+
+        })
+
+
+    </script>
+
+
+</p-element>

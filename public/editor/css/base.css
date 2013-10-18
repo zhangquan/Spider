@@ -1,0 +1,191 @@
+html  * {
+    /*防止margin叠加*/
+
+    /*改变盒模型*/
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*居中*/
+
+html, body {
+
+    margin: 0;;
+    padding: 0px;
+
+    font-size: 12px;
+    /*
+     -moz-user-select: none;
+     -webkit-user-select: none;
+     -ms-user-select: none;
+     */;
+    height: 100%;
+    overflow: hidden;
+
+}
+
+
+body {
+
+}
+
+
+label {
+    display: inline-block;
+}
+a{
+    color:inherit;
+}
+
+
+
+
+.btn-small {
+    height: 25px !important;
+    line-height: 10px !important;
+}
+
+
+.select-mask{
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: 1000;
+}
+
+.select-mask > *{
+    position: absolute;
+
+}
+
+.hover-mask .handle{
+    display: none!important;
+}
+
+/* s-move */
+.s-top, .s-bottom, .s-left, .s-right {
+
+
+    border: solid 1px #2ebdff;;
+
+    background-color: #fff;
+
+
+
+
+}
+
+/* s-move */
+.h-top, .h-bottom, .h-left, .h-right {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: solid 1px #2ebdff;
+    cursor: move;
+    z-index: 1001;
+    background: #fff;
+}
+
+.h-top {
+    top: -6px;
+    left: 50%;
+    cursor: ns-resize;
+}
+
+.h-bottom {
+    bottom: -6px;
+    left: 50%;
+    cursor: ns-resize;
+}
+
+.h-left {
+    top: 50%;
+    left: -6px;
+    cursor: ew-resize;
+}
+
+.h-right {
+    top: 50%;
+    right: -6px;
+    cursor: ew-resize;
+}
+
+
+
+/*  -----*/
+
+.parent-mask {
+    z-index: 1000;
+    position: absolute;
+    pointer-events: none;
+    background-color: #003bb3;
+    opacity: 0.1;
+
+
+
+}
+
+
+
+/*快捷菜单*/
+
+.shortcutbar {
+
+}
+
+.shortcutbar .type {
+
+}
+
+.shortcutbar .type .name {
+    list-style: none;
+    margin: 5px;
+
+    float: left;
+    line-height: 20px;
+    height: 20px;
+}
+
+.shortcutbar .cmds {
+
+    float: left;
+
+}
+
+.shortcutbar .cmds span {
+
+}
+
+.shortcutbar .layout li {
+    color: #000000;
+
+}
+
+.shortcutbar .img .img {
+    background-color: #3071a9;
+    color: #fff;
+}
+
+.shortcutbar .text .text {
+    background-color: #3071a9;
+    color: #fff;
+}
+
+.shortcutbar .com .com {
+    background-color: #3071a9;
+    color: #fff;
+}
+
+.shortcutbar .section .section {
+    background-color: #3071a9;
+    color: #fff;
+    cursor: not-allowed;
+}
+
+
+
+
+
+

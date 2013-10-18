@@ -1,0 +1,34 @@
+<p-element name="p-button" extends="button">
+    <template>按钮</template>
+    <script>
+
+        ({
+            readyCallback: function () {
+            },
+            editCallback: function () {
+
+                this.type = "button";
+                this.className = "btn btn-default";
+                var defaultCmd = {
+                    type: "p-button",
+                    desc: "",
+                    cmds: [
+
+                    ]
+
+                }
+
+
+                //  shortcutbar.add(defaultCmd)
+
+                //   shortcutbar.showType("p-button")
+
+            }
+
+
+
+        });
+
+
+    </script>
+</p-element>

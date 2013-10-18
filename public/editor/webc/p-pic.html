@@ -1,0 +1,66 @@
+<p-element name="p-pic" set="/editor/webc/img-set.html">
+    <template>
+        <a href="/editor/img/default-img.jpg"><img src="/editor/img/default-img.jpg"></a>
+        <style>
+            p-pic {
+
+                display: block;
+                width: 200px;
+                height: 100px;
+                border: 0;
+                overflow: hidden;
+            }
+
+            p-pic img {
+                border: 0;
+                width: 100%;
+            }
+
+
+        </style>
+    </template>
+    <script>
+        function command(ev) {
+
+            parent.play.selectImg.show();
+            parent.play.selectImg.onSelect = function (src) {
+
+
+                var editableEL = parent.play.select.selectedEL;
+
+
+                if (editableEL.prop("tagName").toLowerCase() == "img") {
+                    $(editableEL).prop("src", src)
+                }
+                else {
+                    $(editableEL).html('<img style="width:100%" src="' + src + '"/>')
+                }
+
+            }
+
+
+        }
+        ;
+
+        ({
+            readyCallback: function () {
+
+
+
+
+            },
+            editCallback: function () {
+                var ok = false;
+
+
+                this.cmds = [
+                    {name: "upload",icon:'<i class="icon-picture"></i>', desc: "上传", func: command}
+
+                ]
+
+
+            }
+        })
+        ;
+    </script>
+</p-element>

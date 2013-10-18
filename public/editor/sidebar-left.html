@@ -1,0 +1,78 @@
+<p-element name="sidebar-left" >
+    <template>
+        <style>
+                /*左侧*/
+            sidebar-left {
+                width: 40px;
+                background-color: #333;
+
+                height: 100%;
+                position: fixed;
+                left: 0px;
+                top: 0;
+
+                z-index: 27;
+                -webkit-transition: left .5s ease-in-out,background .4s ease-in-out;
+                transition: left .5s ease-in-out,background .4s ease-in-out;
+
+                display: none;
+            }
+
+
+        </style>
+
+      <!--  <div class="btn-group-vertical">
+            <button type="button" class="btn btn-default"><a data-cmd="history_back" href="#" class="icon-backward"></a></button>
+            <button type="button" class="btn btn-default"><a data-cmd="history_forward" href="#" class="icon-forward"></a></button>
+
+
+
+
+
+        </div>
+
+        -->
+
+        <!--
+          <form class="navbar-form navbar-left" style="margin-left: 100px">
+                <div class="form-group">
+                    <select id="pages" class="form-control">
+                        <option value="./editor/source.html">空白页</option>
+                        <option value="./editor/find">上一个页面</option>
+                        <option value="./editor/example/pages/home.html">首页</option>
+                        <option value="./editor/example/pages/about.html">关于</option>
+                    </select>
+                </div>
+
+            </form>
+            -->
+
+
+
+
+
+
+    </template>
+
+
+    <script>
+
+
+        ({
+            readyCallback: function () {
+
+
+                 console.log("sidebar-left is ok")
+
+
+
+            }
+
+
+        })
+
+
+    </script>
+
+
+</p-element>

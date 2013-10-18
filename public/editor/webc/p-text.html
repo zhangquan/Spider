@@ -1,0 +1,33 @@
+<p-element name="p-text" set="/editor/webc/font-set.html">
+    <template>
+
+        <style>
+            p-text {
+                overflow: hidden;
+                outline: none;
+            }
+
+
+        </style>
+
+        <content></content>
+    </template>
+    <script>
+
+
+        ({
+            readyCallback: function () {
+
+                //$(this).css("white-space", "nowrap")
+                if ($.trim($(this).html()) == "") {
+                    $(this).html("点击输入内容...")
+                }
+
+
+            }
+
+
+
+        });
+    </script>
+</p-element>

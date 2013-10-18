@@ -1,0 +1,12 @@
+{
+  "name": "ruler",
+  "homepage": "https://github.com/git@github.com:hilliuse/ruler",
+  "_release": "5e740a3904",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "5e740a39044241b9ca74a88dc724d054bbf135f7"
+  },
+  "_source": "git@github.com:hilliuse/ruler.git",
+  "_target": "*"
+}

@@ -1,0 +1,29 @@
+* {
+   /*
+    导致编辑的时候不能换行，改用js的select实现
+    -webkit-user-select: none;
+   */
+
+}
+
+html{
+
+}
+html ,body{
+
+
+
+}
+
+body{
+
+}
+
+
+[data-moveable]{
+    cursor: move;
+}
+
+[contenteditable="true"]{
+    cursor:text;
+}

@@ -1,0 +1,55 @@
+<p-element name="p-nav-h" attributes="href src">
+    <template>
+        <style>
+            p-nav-h {
+                color: #777777;
+            }
+
+            p-nav-h a {
+                text-align: center;
+            }
+
+            p-nav-h p-text {
+
+                padding: 10px 15px;
+
+            }
+
+
+        </style>
+
+
+        <div class="grid-row">
+
+            <p-text data-height-auto="100%"><a href="#">链接</a></p-text>
+            <p-text data-height-auto="100%"><a href="#">链接</a></p-text>
+            <p-text data-height-auto="100%"><a href="#">链接</a></p-text>
+
+        </div>
+
+
+    </template>
+
+    <script>
+
+
+        ({
+
+
+            readyCallback: function () {
+                $(this).css("lineHeight", $(this).height() - 20 + "px")
+
+
+            }
+
+
+
+
+
+        });
+
+
+    </script>
+
+
+</p-element>

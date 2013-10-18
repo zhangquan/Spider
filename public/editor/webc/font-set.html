@@ -1,0 +1,170 @@
+<p-element name="font-set" title="字体">
+    <template>
+        <style>
+
+
+        </style>
+
+
+        <h3 class="collapse-header" data-toggle="collapse" data-target="#bg-panel">
+            文体
+        </h3>
+
+        <div class="collapse-body collapse" id="bg-panel">
+            <div class="collapse-body-panel">
+
+                <div class='inline c-1'>
+                    <select class="form-control" data-cssname="fontFamily">
+                        <option value="arial">Arial</option>
+                        <option value="'arial black'">Arial Black</option>
+                        <option value="'comic sans ms'">Comic Sans MS</option>
+                        <option value="'courier new'">Courier New</option>
+                        <option value="georgia">Georgia</option>
+                        <option value="helvetica">Helvetica</option>
+                        <option value="impact">Impact</option>
+                        <option value="'times new roman'">Times New Roman</option>
+                        <option value="'trebuchet ms'">Trebuchet MS</option>
+                        <option value="verdana">Verdana</option>
+
+                    </select>
+                </div>
+
+                <div class="group font">
+
+
+                    <div class="text inline"><span>&nbsp;</span></div>
+
+
+                    <div class="text-input inline c-3"><input data-cssunit="px" class="form-control"
+                                                              data-cssname="fontSize"
+                                                              type="text"/><span>大小</span>
+                    </div>
+                    <div class="text-input inline c-3"><input data-cssunit="px" class="form-control"
+                                                              data-cssname="letterSpacing"
+                                                              type="text"/><span>间距</span></div>
+                    <div class="text-input inline c-3"><input data-cssunit="px" class="form-control"
+                                                              data-cssname="lineHeight"
+                                                              type="text"/><span>行高</span></div>
+
+
+                </div>
+                <div class="group font">
+
+
+                    <div class="text inline"><span>对齐</span></div>
+
+
+                    <div class="inline c-1">
+                        <div class="btn-group">
+                            <button type="button" value="left" data-cssname="textAlign" class="btn btn-small">LF
+                            </button>
+                            <button type="button" value="center" data-cssname="textAlign" class="btn btn-small">CT
+                            </button>
+                            <button type="button" value="right" data-cssname="textAlign" class="btn btn-small">RT
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="group font">
+
+
+                    <div class="text inline"><span>颜色</span></div>
+
+
+                    <div class="inline c-3">
+                        <div class="minicolors" data-cssname="color"></div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+
+
+        </div>
+
+
+    </template>
+
+
+    <script>
+
+
+        ({
+            readyCallback: function () {
+
+
+                var host = this;
+
+                function command(target) {
+
+
+                    $(target).attr("contenteditable", "true");
+                    $(target).focus();
+
+
+                }
+
+
+                $(document).on("unSelectEl", function (ev, el) {
+
+                    var target = $(ev.target);
+
+                    if (el.prop("tagName") && (el.prop("tagName").toLowerCase() == "p-text")) {
+                        el.removeAttr("contenteditable");
+                        el.blur();
+                    }
+
+
+                })
+                $(document).on("reSelectEl", function (ev, el) {
+
+
+                    if (play.select.selectedEL && play.select.selectedEL.is("p-text")) {
+
+                        command(play.select.selectedEL);
+                    }
+
+
+                })
+
+
+                $(play.iframeDoc).on("paste", function (ev) {
+                    var target = $(ev.target);
+                    if (play.cmd == "select" && play.select.selectedEL && play.select.selectedEL.is("p-text") && target.closest(play.select.selectedEL).length) {
+
+                        if (e.originalEvent.clipboardData) {
+                            var text = e.originalEvent.clipboardData.getData("text/plain");
+
+                            console.log(text);
+
+
+                            e.preventDefault();
+                            document.execCommand("insertHTML", false, text)
+
+
+                        }
+                    }
+
+                })
+
+
+            },
+
+            open:function(){
+
+
+                   $(".collapse",this).collapse("show")
+            }
+
+
+        })
+
+
+    </script>
+
+
+</p-element>

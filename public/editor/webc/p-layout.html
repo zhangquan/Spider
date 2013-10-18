@@ -1,0 +1,35 @@
+<p-element name="p-layout">
+    <template>
+        <style>
+            p-layout {
+
+                display: block;
+                width: 200px;
+                height: 100px;
+
+            }
+
+            p-layout:before, p-layout:after {
+                display: table;
+                content: "";
+                line-height: 0;
+            }
+
+        </style>
+        <content></content>
+
+    </template>
+    <script>
+
+        ({
+            editCallback: function () {
+                if ($.trim($(this).html()) != "")return;
+                var play = parent.play;
+            }
+        });
+
+
+    </script>
+
+
+</p-element>

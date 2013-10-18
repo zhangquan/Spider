@@ -1,0 +1,123 @@
+<p-element name="p-nav-v" attributes="href src">
+    <template>
+        <style>
+            p-nav-v {
+                display: block;
+                background-color: #eeeeee;
+            }
+
+        </style>
+
+        <ul class="nav nav-pills nav-stacked">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Messages</a></li>
+        </ul>
+
+
+    </template>
+
+    <script>
+
+
+        ({
+
+            autoHeight: function () {
+
+
+                var height = $(this).innerHeight();
+
+
+                var as = $("a", this);
+               var h = (height)/3-20
+                console.log("heihgt",h)
+                as.height(h);
+                as.css("lineHeight", h+ 'px');
+
+            },
+            readyCallback: function () {
+
+                this.autoHeight(this);
+
+
+
+                $("a", this).prop("editable",true);
+
+
+            },
+            editCallback: function () {
+                var host = this;
+
+                function command(ev) {
+                    var newLi = $('<li><a href="#">链接</a></li>');
+
+
+                    $(".nav", host).append(newLi);
+                    host.autoHeight(host)
+
+
+
+
+                    $("a", host).prop("editable",true);
+                }
+
+                var title='<a class="navbar-brand" href="#">Title</a>';
+
+                function toggleTitle() {
+                   var c = $(".navbar .container", host) ;
+
+
+
+                    var brand = c.find(".navbar-brand") ;
+
+                    var list = c.find(".nav-collapse")
+
+                    console.log(brand)
+                    if(brand.length){
+
+                        brand.remove();
+                    } else{
+                        var b = $(title);
+                        b.insertBefore(list)
+
+
+                    }
+
+                    host.resize();
+
+
+                }
+
+                function alignRight(){
+                    var c = $(".navbar-nav", host) ;
+                    c.toggleClass("pull-right")
+                }
+
+
+
+               this.cmds = [
+                        {name: "+", desc: "添加", func: command},
+                        {name: "+", desc: "显示标题", func: toggleTitle},
+                        {name: "+", desc: "右对齐", func: alignRight}
+
+
+                    ]
+
+
+            },
+            resize: function () {
+
+                this.autoHeight(this);
+
+
+            }
+
+
+
+        });
+
+
+    </script>
+
+
+</p-element>

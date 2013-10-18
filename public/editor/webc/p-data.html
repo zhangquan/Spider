@@ -1,0 +1,28 @@
+<p-element name="p-data">
+    <template>
+        <style>
+            p-data {
+
+                display: block;
+                width: 200px;
+                height: 100px;
+            }
+
+        </style>
+        <content></content>
+
+    </template>
+    <script>
+
+        ({
+            editCallback: function () {
+                if ($.trim($(this).html()) != "")return;
+                var play = parent.play;
+            }
+        });
+
+
+    </script>
+
+
+</p-element>

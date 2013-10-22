@@ -32,7 +32,6 @@
             var pCood = position.cood($(parent));
 
 
-
             if (pCood.bottom > tCood.bottom && tCood.top < pCood.bottom) {
                 return true;
             }
@@ -71,7 +70,7 @@
         //遍历节点，查找第一个完全包围某个区域的元素
         getFullInParent: function (cood, doc) {
 
-            doc = doc || document;
+            var doc = play.iframeDoc;
 
             var result = $(doc.body);
 
@@ -81,14 +80,23 @@
                 var children = p.children();
                 children.each(function (index, el) {
                     var child = $(el);
+
+
                     //忽略非布局元素
-                    if (utils.isGrid(child)) {
-                        walk(child);
-                    }
-                    else if (!utils.isBeParentable(child))return;
-                    else if (position.isFullIn(child, cood)) {
-                        result = child;
-                        walk(child);
+
+
+                    if (position.isFullIn(child, cood)) {
+
+                        if (utils.isGrid(child) || (!utils.isBeParentable(child))) {
+                            walk(child);
+                        }
+                        else {
+
+
+                            result = child;
+                            walk(child);
+                        }
+
                     }
                 })
             }
@@ -97,20 +105,24 @@
             walk(result);
 
 
+            /*
+             if (result.is($(doc.body))) {
 
+             if (this.isCenterIn($("#header-", doc), cood)) {
+             result = $("#header", doc)
+             }
+             else if (this.isCenterIn($("#body", doc), cood)) {
+             result = $("#body", doc)
+             }
+             else if (this.isCenterIn($("#footer", doc), cood)) {
+             result = $("#footer", doc)
+             }
+
+
+             }
+             */
             if (result.is($(doc.body))) {
-
-                if (this.isCenterIn($("#header", doc), cood)) {
-                    result = $("#header", doc)
-                }
-                else if (this.isCenterIn($("#body", doc), cood)) {
-                    result = $("#body", doc)
-                }
-                else if (this.isCenterIn($("#footer", doc), cood)) {
-                    result = $("#footer", doc)
-                }
-
-
+                result = $("#body-center", doc)
             }
 
 
@@ -426,7 +438,6 @@
 
     };
     play.position = position;
-
 
 
 })();

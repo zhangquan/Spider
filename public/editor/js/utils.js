@@ -43,19 +43,9 @@
         isBeParentable: function (el) {
 
 
-            var isBeParentable = el.prop("parentable");
-            var tagName = el.prop("tagName");
-
-            if (!tagName) return false;
+            return el.prop("parentable");
 
 
-            if (isBeParentable) {
-
-                return true;
-            }
-            else {
-                return  false;
-            }
         },
 
         isStatic: function (el) {

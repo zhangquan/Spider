@@ -87,71 +87,49 @@
     }
 
 
-    var synPageWidth = function (width) {
+    var rendHeight = function () {
 
 
-        var margin = $("#editor-margin")
+        var header = $("#header-center", play.iframeDoc);
+        var footer = $("#footer-center", play.iframeDoc);
+        var body = $("#body-center", play.iframeDoc);
 
-        $(margin).css("width", width + 60);
-
-        var header = $("#header", play.iframeDoc);
-        var footer = $("#footer", play.iframeDoc);
-        var body = $("#body", play.iframeDoc);
-
-        var f = function (el) {
-            el.prop("parentable", true);
+        var hline = $('.hline', play.container);
+        var bline = $('.bline', play.container);
+        var fline = $('.fline', play.container);
 
 
-            if (!el.attr("data-width-auto")) {
-                el.width(width);
-            }
-
-        }
-
-      //  f(header);
-       // f(footer);
-       // f(body);
-
-
-        setRulersWidth();
-
+        hline.css("top", position.cood($("#header-center", play.iframeDoc)).botttom)
+        bline.css("top", position.cood($("#body-center", play.iframeDoc)).bottom)
+        fline.css("top", position.cood($("#footer-center", play.iframeDoc)).bottom)
 
     }
 
-
-    var synPageHeight = function () {
+    var synIframeHeight = function () {
         var h = $(play.iframeDoc.body).height();
-              console.log("body height",h)
+
 
         $(play.iframe).height(h);
-
-
-        var hline = $('.hline');
-        var bline = $('.bline');
-        var fline = $('.fline');
-
-        hline.css("top", position.cood($("#header", play.iframeDoc)).botttom)
-        bline.css("top", position.cood($("#body", play.iframeDoc)).bottom)
-        fline.css("top", position.cood($("#footer", play.iframeDoc)).bottom)
-
-
-        setRulersHeight();
     }
 
 
-    var setHeight = function () {
+    var initHeight = function () {
 
-        var header = $("#header", play.iframeDoc);
-        var footer = $("#footer", play.iframeDoc);
-        var body = $("#body", play.iframeDoc);
+        var header = $("#header-center", play.iframeDoc);
+        var footer = $("#footer-center", play.iframeDoc);
+        var body = $("#body-center", play.iframeDoc);
 
         var hline = $('<div class="hline"><span class="icon-resize-horizontal"></span></div>');
         var bline = $('<div class="bline"><span class="icon-resize-horizontal"></span></div>');
         var fline = $('<div class="fline"><span class="icon-resize-horizontal"></span></div>');
+
         hline.appendTo(play.container);
         bline.appendTo(play.container);
         fline.appendTo(play.container);
 
+
+        rendHeight();
+        synIframeHeight();
 
         hline.find("span").click(function (ev) {
             var target = $(ev.target);
@@ -182,18 +160,19 @@
         }
         var ondrag = function (startX, startY, endX, endY, target) {
 
-
-            var temp = top + (endY - startY);
+            var dis = endY - startY;
+            var temp = top + dis;
 
             if (temp < 0)return;
             target.css("top", temp)
+
             if (target.hasClass("hline")) {
 
                 header.height(temp - position.cood(header).top);
+
+
             }
             else if (target.hasClass("bline")) {
-
-
 
 
                 body.height(temp - position.cood(body).top);
@@ -205,34 +184,15 @@
             }
 
 
-            synPageHeight();
+            rendHeight();
+            if (dis > 0)  synIframeHeight();
             $(document).trigger("resizeEl", [target])
 
 
         }
         var endDrag = function (startX, startY, endX, endY, target, endTarget) {
 
-
-            var temp = top + (endY - startY);
-            if (temp < 0)return;
-
-            if (target.hasClass("hline")) {
-                header.height(temp - position.cood(header).top);
-            }
-            else if (target.hasClass("bline")) {
-
-                body.height(temp - position.cood(body).top);
-
-
-            }
-            else if (target.hasClass("fline")) {
-                footer.height(temp - position.cood(footer).top);
-            }
-
-
-            synPageHeight();
-            $(document).trigger("resizeEl", [target])
-
+             synIframeHeight();
             target.removeClass("hover")
 
 
@@ -244,21 +204,64 @@
 
 
     }
-    var setWidth = function () {
+
+
+    var rendWidth = function () {
+        var cood = position.cood($("#body-center", play.iframeDoc));
+
+        var lline = $(".lline", play.container);
+        var rline = $(".rline", play.container);
+
+        lline.css("left", cood.left);
+        rline.css("left", cood.left + cood.width);
+
+    }
+
+    var synPageWidth = function (width) {
+
+
+        var header = $("#header-center", play.iframeDoc);
+        var footer = $("#footer-center", play.iframeDoc);
+        var body = $("#body-center", play.iframeDoc);
+
+        var f = function (el) {
+
+            el.width(width);
+
+            if (!el.attr("data-width-auto")) {
+                el.width(width);
+            }
+
+        }
+
+        f(header);
+        f(footer);
+        f(body);
+
+
+        rendWidth();
+
+
+    }
+    var initWidth = function () {
 
 
         var lline = $('<div class="lline"><span></span></div>');
         var rline = $('<div class="rline"><span></span></div>');
 
         lline.appendTo(play.container);
+
         rline.appendTo(play.container);
+
+
+        rendWidth();
 
 
         var width;
 
         var startDrag = function (startX, startY, target) {
 
-            width = $(play.iframe).width();
+            width = $("#body-center", play.iframeDoc).width();
 
             if (width < 0)return;
 
@@ -271,13 +274,14 @@
 
             if (target.hasClass("rline")) {
 
-                var w = width + endX - startX;
+                var w = width + (endX - startX) * 2;
                 if (w < 0)return;
+
 
                 synPageWidth(w)
             }
             else if (target.hasClass("lline")) {
-                var w = width + startX - endX;
+                var w = width + (startX - endX) * 2;
                 if (w < 0)return;
 
                 synPageWidth(w)
@@ -291,26 +295,6 @@
         }
         var endDrag = function (startX, startY, endX, endY, target, endTarget) {
 
-
-            if (target.hasClass("rline")) {
-
-                var w = width + endX - startX;
-                if (w < 0)return;
-
-                synPageWidth(w)
-            }
-            else if (target.hasClass("lline")) {
-                var w = width + startX - endX;
-                if (w < 0)return;
-
-                console.log("wwwwwww")
-
-                synPageWidth(w)
-
-
-            }
-
-            $(document).trigger("resizeEl", [target])
 
             target.removeClass("hover")
 
@@ -327,29 +311,28 @@
     $(document).on("iframeload", function () {
 
         //synPageHeight()
-        $("#editor-margin").width(1000)
+        //  $("#editor-margin").width(1000)
 
+
+        initHeight();
+        initWidth();
         initRulers();
-        setHeight();
-        setWidth();
 
 
         $(window).on("resize", function () {
             synPageWidth();
-            synPageHeight();
+            rendHeight();
 
         })
         $(play.iframeWin).on("resize scroll", function () {
             synPageWidth();
-            synPageHeight();
+            rendHeight();
 
 
         })
         $(document).on("addNewEl moveEl cssChange resizeEl", function () {
             synPageWidth();
-            synPageHeight();
-
-
+            rendHeight();
         })
 
 
